@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { ArrowUpRight, Check, Clock3, Code2, ExternalLink, X } from 'lucide-react'
+import { ArrowUpRight, Check, Clock3, Code2, X } from 'lucide-react'
 import { projects } from '../data/portfolioData'
 
 function OtpSandbox() {
@@ -67,6 +67,7 @@ function CaseVisual({ project, index }) {
       {project.id === 'otp-system' && <div className="visual-otp"><span className="otp-shield">✓</span><span className="otp-digits">••••••</span><small>VERIFICATION CODE</small><span className="otp-checkline"><i /> IDENTITY CONFIRMED</span></div>}
       {project.id === 'employee-database' && <div className="visual-employees"><div className="employee-side"><i /><i /><i /><i /></div><div className="employee-table"><span>EMPLOYEE RECORDS</span><i /><i /><i /><i /></div></div>}
       {project.id === 'crud-application' && <div className="visual-crud"><span>RECORD MANAGEMENT</span><div className="crud-actions"><i>CREATE</i><i>READ</i><i>UPDATE</i><i>DELETE</i></div><b>CRUD</b></div>}
+      {project.id === 'cv-generator' && <div className="visual-crud"><span>PROFILE · EDUCATION · EXPERIENCE</span><div className="crud-actions"><i>PROFILE</i><i>EDUCATION</i><i>WORK</i><i>SKILLS</i></div><b>CV</b></div>}
       {project.id === 'python-automation' && <div className="visual-automation"><span className="automation-prompt">&gt;_</span><div><span>python</span><strong>automation</strong></div><small>5 TOOLS · CSV · FILE HANDLING</small><i className="automation-grid" /></div>}
       <span className="visual-index">A. GOWRI DEVI / SELECTED WORK</span>
     </div>
@@ -96,10 +97,10 @@ function ProjectModal({ project, projectIndex, onClose }) {
         <div className="modal-block"><h3>Technology</h3><div className="project-tags">{project.tech.map((item) => <span key={item}>{item}</span>)}</div></div>
         {project.id === 'otp-system' && <OtpSandbox />}
         {project.tools && <AutomationTabs tools={project.tools} />}
-        <div className="modal-links">
-          {project.github ? <a className="button button-primary" href={project.github} target="_blank" rel="noreferrer"><Code2 size={16} /> Source code <ExternalLink size={13} /></a> : <span className="link-unavailable"><Code2 size={15} /> Source code on request</span>}
-          {project.demo ? <a className="button button-outline" href={project.demo} target="_blank" rel="noreferrer">Live demo <ArrowUpRight size={14} /></a> : <span className="link-unavailable"><ExternalLink size={14} /> Live demo in progress</span>}
-        </div>
+        {(project.github || project.demo) && <div className="modal-links">
+          {project.github && <a className="button button-primary" href={project.github} target="_blank" rel="noreferrer"><Code2 size={16} /> Source code</a>}
+          {project.demo && <a className="button button-outline" href={project.demo} target="_blank" rel="noopener noreferrer">Live Demo <ArrowUpRight size={14} /></a>}
+        </div>}
       </motion.article>
     </motion.div>
   )
@@ -131,8 +132,8 @@ export default function ProjectShowcase() {
                 <ul className="case-feature-list">{project.features.map((feature) => <li key={feature}><Check size={13} />{feature}</li>)}</ul>
                 <div className="project-tags">{project.tech.map((item) => <span key={item}>{item}</span>)}</div>
                 <div className="case-actions">
-                  {project.demo ? <a className="case-link" href={project.demo} target="_blank" rel="noreferrer" onClick={(event) => event.stopPropagation()}>Live demo <ArrowUpRight size={14} /></a> : <span className="case-link unavailable">Live demo · In progress</span>}
-                  {project.github ? <a className="case-link secondary" href={project.github} target="_blank" rel="noreferrer" onClick={(event) => event.stopPropagation()}><Code2 size={14} /> Source code</a> : <span className="case-link secondary unavailable"><Code2 size={14} /> Code on request</span>}
+                  {project.demo && <a className="case-link" href={project.demo} target="_blank" rel="noopener noreferrer" onClick={(event) => event.stopPropagation()}>Live Demo <ArrowUpRight size={14} /></a>}
+                  {project.github && <a className="case-link secondary" href={project.github} target="_blank" rel="noreferrer" onClick={(event) => event.stopPropagation()}><Code2 size={14} /> Source code</a>}
                   <button type="button" className="case-open" onClick={() => setSelectedProject({ project, index })}>Open case file <ArrowUpRight size={14} /></button>
                 </div>
               </div>
@@ -140,7 +141,7 @@ export default function ProjectShowcase() {
           ))}
         </AnimatePresence>
       </motion.div>
-      <div className="projects-footnote"><span><Check size={14} /> 06 PROJECTS</span><span>Selected work · all details preserved from profile</span></div>
+      <div className="projects-footnote"><span><Check size={14} /> {String(projects.length).padStart(2, '0')} PROJECTS</span><span>Selected work · all details preserved from profile</span></div>
       <AnimatePresence>{selectedProject && <ProjectModal project={selectedProject.project} projectIndex={selectedProject.index} onClose={() => setSelectedProject(null)} />}</AnimatePresence>
     </section>
   )
