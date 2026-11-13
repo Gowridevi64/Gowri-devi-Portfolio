@@ -94,7 +94,7 @@ export const projects = [
     architecture: 'A responsive front end organizes destination information into a clear browsing experience, built with HTML, CSS and JavaScript.',
     features: ['Presents travel destinations', 'User-friendly browsing experience', 'HTML, CSS and JavaScript'],
     github: null,
-    demo: null,
+    demo: 'https://gowridevi64.github.io/travel-yaari/',
   },
   {
     id: 'foodie',
@@ -106,7 +106,7 @@ export const projects = [
     architecture: 'A browser-based interface presents food items in a simple, easy-to-explore layout.',
     features: ['Explore food items', 'User-friendly application interface', 'HTML, CSS and JavaScript'],
     github: null,
-    demo: null,
+    demo: 'https://gowridevi64.github.io/Foodiee/',
   },
   {
     id: 'otp-system',
@@ -119,7 +119,7 @@ export const projects = [
     architecture: 'A generated one-time code is delivered through an authentication flow, then checked against the user-submitted value before expiry.',
     features: ['Supports user authentication', 'OTP verification flow', 'Python and web technologies'],
     github: null,
-    demo: null,
+    demo: 'https://gowridevi65.pythonanywhere.com/',
   },
   {
     id: 'employee-database',
@@ -131,7 +131,19 @@ export const projects = [
     architecture: 'Python connects to a SQL database to support maintaining employee records.',
     features: ['Manage employee records', 'Python and SQL', 'Database connectivity'],
     github: null,
-    demo: null,
+    demo: 'https://gowridevi1.pythonanywhere.com/',
+  },
+  {
+    id: 'cv-generator',
+    title: 'CV Generator',
+    subtitle: 'CV Builder',
+    category: 'Web & Full Stack',
+    description: 'Built a form-based CV generator that collects personal, contact, education, work and skills details.',
+    tech: ['HTML', 'Bootstrap'],
+    architecture: 'A web form gathers profile and experience details for CV creation.',
+    features: ['Collects personal and contact details', 'Captures education and previous work', 'Records skills for a CV'],
+    github: null,
+    demo: 'https://gowridevi66.pythonanywhere.com/',
   },
   {
     id: 'crud-application',
